@@ -3,6 +3,27 @@ var router = express.Router();
 
 console.log("Populating DB...");
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.get('/words/:number', function(req, res, next) {
+	var number = req.params.number;
+  //res.render('index', { title: 'Words'});
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json({"Yayyy it works": 1});
+});
+
+router.get('/letters/:number', function(req, res, next) {
+  res.render('index', { title: 'Letters' });
+});
+
+router.get('/paragraphs/:number', function(req, res, next) {
+  res.render('index', { title: 'Paragraphs' });
+});
+
 /* Pre-populate db. */
 var mongoose = require('mongoose');
 
@@ -113,14 +134,5 @@ Paragraph.insertMany(allParagraphs)
 
 console.log("Finished populating DB!");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-/* GET Hello World page. */
-router.get('/helloworld', function(req, res) {
-    res.render('helloworld', { title: 'Hello, World!' });
-});
 
 module.exports = router;
