@@ -96,7 +96,7 @@
     </section>
 	
 	<section id="selectType" class="container content-section">
-	<form onsubmit="myFunction()">
+	<form id="myform" onsubmit="myFunction()">
 		<div class="select">
 			<div class="form-group">
 				<h2>Dropdowns</h2>
@@ -110,10 +110,10 @@
 					<li><a href="#">Letter</a></li>
 					</ul>
 				</div>
-				
-				<label class="radio-inline"><input type="radio" name="para">Paragraph</label>
-				<label class="radio-inline"><input type="radio" name="word">Words</label>
-				<label class="radio-inline"><input type="radio" name="letter">Letter</label>
+
+					<label class="radio-inline"><input type="radio" name="para" id="r1">Paragraph</label>
+					<label class="radio-inline"><input type="radio" name="word" id="r2">Words</label>
+					<label class="radio-inline"><input type="radio" name="letter" id="r3">Letter</label>
 				
 				<p>Select the number of elements to be displayed</p>
 				<input type="number" class="form-control" id="number">
@@ -178,18 +178,29 @@
 
     <!-- Theme JavaScript -->
     <script>
+
+
 		function myFunction() {
 			var count = document.getElementById("number").value;
+			var url = "https://127.0.0.1:8080";
+			var option;
 			
+			if (document.getElementById('r1').checked) {
+				option = "/paragraphs";
+			}
+			else if (document.getElementById('r2').checked) {
+				option = "/words";
+			}
+			else if (document.getElementById('r3').checked) {
+				option = "/letters";
+			}
 			if (count>0) {
-				alert("The form was submitted" + count);
+				alert("The form was submitted" + url + option + count);
 				}
 			else{
 				alert("Count should be greater than 0");
 			}
-
 		}
-		
 	</script>
 	</script>
 
