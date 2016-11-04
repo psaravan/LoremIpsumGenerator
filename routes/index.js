@@ -167,8 +167,8 @@ router.get('/words/:number', function(req, res, next) {
   	ids.push(random);
   }
 
-  ids = shuffle(ids);
   Word.find({'word_id' : { $in: ids }}, 'value', function(err, words) {
+  		words = shuffle(words);
   		res.json(words);
   })
 });
@@ -189,8 +189,8 @@ router.get('/letters/:number', function(req, res, next) {
   	ids.push(random);
   }
 
-  ids = shuffle(ids);
   Letter.find({'letter_id' : { $in: ids }}, 'value', function(err, letters) {
+  		letters = shuffle(letters);
   		res.json(letters);
   })
 });
@@ -211,8 +211,8 @@ router.get('/paragraphs/:number', function(req, res, next) {
   	ids.push(random);
   }
 
-  ids = shuffle(ids);
   Paragraph.find({'paragraph_id' : { $in: ids }}, 'value', function(err, paragraphs) {
+  		paragraphs = shuffle(paragraphs);
   		res.json(paragraphs);
   })
 });
