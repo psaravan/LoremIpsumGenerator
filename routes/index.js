@@ -13,7 +13,7 @@ router.get('/words/:number', function(req, res, next) {
   //res.render('index', { title: 'Words'});
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json({"Yayyy it works": 1});
+  res.json({1: "yes", 2:"no"});
 });
 
 router.get('/letters/:number', function(req, res, next) {
