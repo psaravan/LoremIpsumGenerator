@@ -2,6 +2,25 @@ function randomIntBetween(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -147,7 +166,8 @@ router.get('/words/:number', function(req, res, next) {
   	}
   	ids.push(random);
   }
-  console.log(ids);
+
+  ids = shuffle(ids);
   Word.find({'word_id' : { $in: ids }}, 'value', function(err, words) {
   		res.json(words);
   })
@@ -169,6 +189,7 @@ router.get('/letters/:number', function(req, res, next) {
   	ids.push(random);
   }
 
+  ids = shuffle(ids);
   Letter.find({'letter_id' : { $in: ids }}, 'value', function(err, letters) {
   		res.json(letters);
   })
@@ -190,6 +211,7 @@ router.get('/paragraphs/:number', function(req, res, next) {
   	ids.push(random);
   }
 
+  ids = shuffle(ids);
   Paragraph.find({'paragraph_id' : { $in: ids }}, 'value', function(err, paragraphs) {
   		res.json(paragraphs);
   })
