@@ -34,9 +34,9 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+             <!--    <a class="navbar-brand page-scroll" href="#page-top">
                     <i class="fa fa-play-circle"></i> <span class="light">Start</span> Bootstrap
-                </a>
+                </a> -->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,8 +98,8 @@
 			<div class="form-group" align="center"> 
                 <p>Select the number of elements to be displayed</p>
 					<label class="radio-inline"><input type="radio" name="para" id="r1">Paragraph</label>
-					<label class="radio-inline"><input type="radio" name="word" id="r2">Words</label>
-					<label class="radio-inline"><input type="radio" name="letter" id="r3">Letter</label>
+					<label class="radio-inline"><input type="radio" name="para" id="r2">Words</label>
+					<label class="radio-inline"><input type="radio" name="para" id="r3">Letter</label>
 
 				 <br/>
                 <br/>
@@ -181,30 +181,17 @@
      $.ajax({
       url: final_url,
       error: function() {
-         //$('#info').html('<p>An error has occurred</p>');
          $('#info').html('<p>An error has occurred</p>');
       },
       dataType: 'json',
       success: function(data) {
         console.log("Success");
-        //$('#info').html("");
         var finalContent = "";
         for(var i in data){
-            var value = data[i];
-            //var value = $('<p>').text(data[i]);
-            //var $new_line = $('<br/>');
-            // $('#info')
-            //     .append(value);
-
-            finalContent = finalContent + '\n' + value;
-               // .append($new_line);
+            var value = data[i].value;
+            finalContent = finalContent  + value + "<br/>" + "<br/>";
         }
         document.getElementById("info").innerHTML = finalContent;
-         // var $title = $('<h1>').text(data.talks[0].talk_title);
-         // var $description = $('<p>').text(data.talks[0].talk_description);
-         // $('#info')
-         //    .append($title)
-         //    .append($description);
       },
       type: 'GET'
    });

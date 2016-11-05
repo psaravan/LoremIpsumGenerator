@@ -25,8 +25,10 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
+var url = "mongodb://" + process.env.MONGODB_PORT_27017_TCP_ADDR + "/" + process.env.MONGODB_PORT_27017_TCP_PORT + "/LoremIpsumGenerator";
 // Connect to DB.
-mongoose.connect('mongodb://127.0.0.1/LoremIpsumGenerator');
+//mongoose.connect('mongodb://127.0.0.1/LoremIpsumGenerator');
+mongoose.connect(url);
 
 // Define models/collections.
 var Letter = mongoose.model('Letters', {letter_id: Number, value: String});
